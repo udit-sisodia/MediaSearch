@@ -23,7 +23,7 @@ return response.data
 
 export async function fetchGif(query){
     const response=await axios.get("http://api.giphy.com/v1/gifs/search",{
-        params:{q:query,api_key:TENOR_KEY,limit:25},
+        params:{q:query,api_key:TENOR_KEY,limit:30},
       
 })
  return response.data.data
