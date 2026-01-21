@@ -13,7 +13,7 @@ const ResultGrid = () => {
         if(!query) return
         dispatch(setLoading())
        try {
-         let data=[]
+        let data=[]
         const getData=async ()=>{
         if(activeTab=="photos"){
             const response=await fetchPhotos(query)
