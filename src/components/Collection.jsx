@@ -1,28 +1,50 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { removeCollection , toastRemoved } from '../redux/feautres/collectionSlice'
+import { removeCollection, toastRemoved } from '../redux/feautres/collectionSlice'
 
-const Collection = ({elem}) => {
-    const dispatch=useDispatch()
+const Collection = ({ elem }) => {
+  const dispatch = useDispatch()
 
-    const removeFromCollection=(elem)=>{
-        dispatch(removeCollection(elem))
-        dispatch(toastRemoved())
-    }
+  const removeFromCollection = (elem) => {
+    dispatch(removeCollection(elem))
+    dispatch(toastRemoved())
+  }
+
   return (
-    <div className='bg-white relative h-[18vw] w-[22vw] rounded'>
-      <a target="_blank" className='h-full' href={elem.url}>
-        {elem.type == "photo" ? <img className='h-full w-full object-center object-cover' src={elem.src} alt="" /> : ""}
-        {elem.type == "video" ? <video className='h-full w-full object-center object-cover' src={elem.src} autoPlay muted></video> : ""}
-        {elem.type == "gif" ? <img className='h-full w-full object-center object-cover' src={elem.src} alt="" /> : ""}
+    <div className='
+      bg-white relative
+      w-full h-[60vw]
+      sm:h-[18vw] sm:w-[22vw]
+      rounded overflow-hidden
+    '>
+      <a target="_blank" className='h-full block' href={elem.url}>
+        {elem.type == "photo" && (
+          <img className='h-full w-full object-cover' src={elem.src} alt="" />
+        )}
+        {elem.type == "video" && (
+          <video className='h-full w-full object-cover' src={elem.src} autoPlay muted />
+        )}
+        {elem.type == "gif" && (
+          <img className='h-full w-full object-cover' src={elem.src} alt="" />
+        )}
       </a>
-      <div id='bottom' className='absolute bottom-0 h-[40%] w-full p-7 text-white flex justify-between items-center gap-3'>
-        <h2 className='text-md  font-semibold leading-tight'>{elem.title}</h2>
+
+      <div className='
+        absolute bottom-0 w-full
+        h-[45%] sm:h-[40%]
+        p-3 sm:p-7
+        text-white flex justify-between items-center gap-2 sm:gap-3
+        bg-gradient-to-t from-black/70 to-transparent
+      '>
+        <h2 className='text-sm sm:text-md font-semibold leading-tight line-clamp-2'>
+          {elem.title}
+        </h2>
+
         <button
-        onClick={()=>{
-          removeFromCollection(elem)
-        }}
-          className='bg-indigo-500  px-3 py-1 rounded cursor-pointer '
+          onClick={() => {
+            removeFromCollection(elem)
+          }}
+          className='bg-indigo-500 px-2 sm:px-3 py-1 rounded cursor-pointer text-xs sm:text-sm'
         >
           Remove
         </button>
